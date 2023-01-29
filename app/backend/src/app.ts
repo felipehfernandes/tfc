@@ -1,5 +1,10 @@
 import * as express from 'express';
 
+import errorMiddleware from './middlewares/error.middleware';
+import Routes from './routes';
+
+const routes = new Routes();
+
 class App {
   public app: express.Express;
 
@@ -7,9 +12,15 @@ class App {
     this.app = express();
 
     this.config();
+    this.routes();
 
     // Não remover essa rota
     this.app.get('/', (req, res) => res.json({ ok: true }));
+  }
+
+  private routes(): void {
+    this.app.use(routes.router);
+    this.app.use(errorMiddleware);
   }
 
   private config():void {
