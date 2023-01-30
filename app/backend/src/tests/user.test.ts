@@ -2,6 +2,7 @@ import * as sinon from 'sinon';
 import * as chai from 'chai';
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
+import { Response } from 'superagent';
 
 // @ts-ignore
 import chaiHttp = require('chai-http');
@@ -11,10 +12,7 @@ const { expect } = chai;
 import { app } from '../app';
 import * as auth from '../authentication/jwtFuncs';
 import User from '../database/models/User.model';
-import { jwtMock, mockedToken, successCreatedUser } from './mocks/user.mocks';
-
-import { Response } from 'superagent';
-
+import { jwtMock, mockedToken, successCreatedUser } from './mocks/user.mock';
 
 const loginInfo = {
   email: 'mock@mock.com',
